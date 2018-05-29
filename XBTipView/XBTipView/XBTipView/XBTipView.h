@@ -18,6 +18,9 @@
 
 + (void)showWarnTip:(NSString *)tip;
 
+
+
+
 + (void)showSuccessTip:(NSString *)tip onView:(UIView *)view;
 
 + (void)showFailureTip:(NSString *)tip onView:(UIView *)view;
@@ -27,4 +30,24 @@
 + (void)showWarnTip:(NSString *)tip onView:(UIView *)view;
 
 
+
+
++ (void)showSuccessTip:(NSString *)tip onView:(UIView *)view hiddenTime:(CGFloat)hiddenTime;
+
++ (void)showFailureTip:(NSString *)tip onView:(UIView *)view hiddenTime:(CGFloat)hiddenTime;
+
++ (void)showBusyTip:(NSString *)tip onView:(UIView *)view hiddenTime:(CGFloat)hiddenTime;
+
++ (void)showWarnTip:(NSString *)tip onView:(UIView *)view hiddenTime:(CGFloat)hiddenTime;
+
+
+
+
++ (void)showSuccessTip:(NSString *)tip hiddenTime:(CGFloat)hiddenTime;
+
++ (void)showFailureTip:(NSString *)tip hiddenTime:(CGFloat)hiddenTime;
+
++ (void)showBusyTip:(NSString *)tip hiddenTime:(CGFloat)hiddenTime;
+
++ (void)showWarnTip:(NSString *)tip hiddenTime:(CGFloat)hiddenTime;
 @end

@@ -13,11 +13,12 @@
 @interface XBTipView ()
 @property (nonatomic,strong) UIImageView *imgV_icon;
 @property (nonatomic,strong) UILabel *lb_tip;
+@property (nonatomic,assign) CGFloat f_hiddenTime;
 @end
 
 @implementation XBTipView
 
-+ (void)showSuccessTip:(NSString *)tip onView:(UIView *)view
++ (void)showSuccessTip:(NSString *)tip onView:(UIView *)view hiddenTime:(CGFloat)hiddenTime
 {
     if (view == nil)
     {
@@ -26,10 +27,11 @@
     XBTipView *tipView = [[XBTipView alloc] initWithDisplayView:view];
     tipView.imgV_icon.image = XBImage_tip成功;
     tipView.lb_tip.text = tip;
+    tipView.f_hiddenTime = hiddenTime;
     [tipView show];
 }
 
-+ (void)showFailureTip:(NSString *)tip onView:(UIView *)view
++ (void)showFailureTip:(NSString *)tip onView:(UIView *)view hiddenTime:(CGFloat)hiddenTime
 {
     if (view == nil)
     {
@@ -38,10 +40,11 @@
     XBTipView *tipView = [[XBTipView alloc] initWithDisplayView:view];
     tipView.imgV_icon.image = XBImage_tip失败;
     tipView.lb_tip.text = tip;
+    tipView.f_hiddenTime = hiddenTime;
     [tipView show];
 }
 
-+ (void)showBusyTip:(NSString *)tip onView:(UIView *)view
++ (void)showBusyTip:(NSString *)tip onView:(UIView *)view hiddenTime:(CGFloat)hiddenTime
 {
     if (view == nil)
     {
@@ -50,10 +53,11 @@
     XBTipView *tipView = [[XBTipView alloc] initWithDisplayView:view];
     tipView.imgV_icon.image = XBImage_tip繁忙;
     tipView.lb_tip.text = tip;
+    tipView.f_hiddenTime = hiddenTime;
     [tipView show];
 }
 
-+ (void)showWarnTip:(NSString *)tip onView:(UIView *)view
++ (void)showWarnTip:(NSString *)tip onView:(UIView *)view hiddenTime:(CGFloat)hiddenTime
 {
     if (view == nil)
     {
@@ -62,8 +66,58 @@
     XBTipView *tipView = [[XBTipView alloc] initWithDisplayView:view];
     tipView.imgV_icon.image = XBImage_tip警示;
     tipView.lb_tip.text = tip;
+    tipView.f_hiddenTime = hiddenTime;
     [tipView show];
 }
+
+
+
+
++ (void)showSuccessTip:(NSString *)tip hiddenTime:(CGFloat)hiddenTime
+{
+    [XBTipView showSuccessTip:tip onView:nil hiddenTime:hiddenTime];
+}
+
++ (void)showFailureTip:(NSString *)tip hiddenTime:(CGFloat)hiddenTime
+{
+    [XBTipView showFailureTip:tip onView:nil hiddenTime:hiddenTime];
+}
+
++ (void)showBusyTip:(NSString *)tip hiddenTime:(CGFloat)hiddenTime
+{
+    [XBTipView showBusyTip:tip onView:nil hiddenTime:hiddenTime];
+}
+
++ (void)showWarnTip:(NSString *)tip hiddenTime:(CGFloat)hiddenTime
+{
+    [XBTipView showWarnTip:tip onView:nil hiddenTime:hiddenTime];
+}
+
+
+
+
++ (void)showSuccessTip:(NSString *)tip onView:(UIView *)view
+{
+    [XBTipView showSuccessTip:tip onView:view hiddenTime:k_tipHiddenTime];
+}
+
++ (void)showFailureTip:(NSString *)tip onView:(UIView *)view
+{
+    [XBTipView showFailureTip:tip onView:view hiddenTime:k_tipHiddenTime];
+}
+
++ (void)showBusyTip:(NSString *)tip onView:(UIView *)view
+{
+    [XBTipView showBusyTip:tip onView:view hiddenTime:k_tipHiddenTime];
+}
+
++ (void)showWarnTip:(NSString *)tip onView:(UIView *)view
+{
+    [XBTipView showWarnTip:tip onView:view hiddenTime:k_tipHiddenTime];
+}
+
+
+
 
 + (void)showSuccessTip:(NSString *)tip
 {
@@ -84,6 +138,9 @@
 {
     [XBTipView showWarnTip:tip onView:nil];
 }
+
+
+
 
 - (void)dealloc
 {
