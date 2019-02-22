@@ -8,7 +8,29 @@
 
 #import "XBAlertViewBase.h"
 
+typedef enum : NSUInteger {
+    XBTipViewType_success,
+    XBTipViewType_failure,
+    XBTipViewType_busy,
+    XBTipViewType_warn
+} XBTipViewType;
+
+typedef void (^XBTipViewHiddenBlock)(void);
+
 @interface XBTipView : XBAlertViewBase
+
+
++ (void)showTipWithType:(XBTipViewType)type tip:(NSString *)tip onView:(UIView *)view hiddenTime:(CGFloat)hiddenTime hiddenBlock:(XBTipViewHiddenBlock)hiddenBlock;
+
+
++ (void)showSuccessTip:(NSString *)tip hiddenBlock:(XBTipViewHiddenBlock)hiddenBlock;
+
++ (void)showFailureTip:(NSString *)tip hiddenBlock:(XBTipViewHiddenBlock)hiddenBlock;
+
++ (void)showBusyTip:(NSString *)tip hiddenBlock:(XBTipViewHiddenBlock)hiddenBlock;
+
++ (void)showWarnTip:(NSString *)tip hiddenBlock:(XBTipViewHiddenBlock)hiddenBlock;
+
 
 + (void)showSuccessTip:(NSString *)tip;
 
@@ -19,35 +41,4 @@
 + (void)showWarnTip:(NSString *)tip;
 
 
-
-
-+ (void)showSuccessTip:(NSString *)tip onView:(UIView *)view;
-
-+ (void)showFailureTip:(NSString *)tip onView:(UIView *)view;
-
-+ (void)showBusyTip:(NSString *)tip onView:(UIView *)view;
-
-+ (void)showWarnTip:(NSString *)tip onView:(UIView *)view;
-
-
-
-
-+ (void)showSuccessTip:(NSString *)tip onView:(UIView *)view hiddenTime:(CGFloat)hiddenTime;
-
-+ (void)showFailureTip:(NSString *)tip onView:(UIView *)view hiddenTime:(CGFloat)hiddenTime;
-
-+ (void)showBusyTip:(NSString *)tip onView:(UIView *)view hiddenTime:(CGFloat)hiddenTime;
-
-+ (void)showWarnTip:(NSString *)tip onView:(UIView *)view hiddenTime:(CGFloat)hiddenTime;
-
-
-
-
-+ (void)showSuccessTip:(NSString *)tip hiddenTime:(CGFloat)hiddenTime;
-
-+ (void)showFailureTip:(NSString *)tip hiddenTime:(CGFloat)hiddenTime;
-
-+ (void)showBusyTip:(NSString *)tip hiddenTime:(CGFloat)hiddenTime;
-
-+ (void)showWarnTip:(NSString *)tip hiddenTime:(CGFloat)hiddenTime;
 @end

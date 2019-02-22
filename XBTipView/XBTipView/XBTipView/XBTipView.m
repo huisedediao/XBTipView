@@ -14,131 +14,86 @@
 @property (nonatomic,strong) UIImageView *imgV_icon;
 @property (nonatomic,strong) UILabel *lb_tip;
 @property (nonatomic,assign) CGFloat f_hiddenTime;
+@property (nonatomic,copy) XBTipViewHiddenBlock bl_hidden;
 @end
 
 @implementation XBTipView
 
-+ (void)showSuccessTip:(NSString *)tip onView:(UIView *)view hiddenTime:(CGFloat)hiddenTime
++ (void)showTipWithType:(XBTipViewType)type tip:(NSString *)tip onView:(UIView *)view hiddenTime:(CGFloat)hiddenTime hiddenBlock:(XBTipViewHiddenBlock)hiddenBlock
 {
     if (view == nil)
     {
         view = [[UIApplication sharedApplication].delegate window];
     }
     XBTipView *tipView = [[XBTipView alloc] initWithDisplayView:view];
-    tipView.imgV_icon.image = XBImage_tip成功;
+    tipView.imgV_icon.image = [XBTipView getImageWithType:type];
     tipView.lb_tip.text = tip;
     tipView.f_hiddenTime = hiddenTime;
+    tipView.bl_hidden = hiddenBlock;
     [tipView show];
 }
-
-+ (void)showFailureTip:(NSString *)tip onView:(UIView *)view hiddenTime:(CGFloat)hiddenTime
++ (UIImage *)getImageWithType:(XBTipViewType)type
 {
-    if (view == nil)
+    if (type == XBTipViewType_success)
     {
-        view = [[UIApplication sharedApplication].delegate window];
+        return XBImage_tip成功;
     }
-    XBTipView *tipView = [[XBTipView alloc] initWithDisplayView:view];
-    tipView.imgV_icon.image = XBImage_tip失败;
-    tipView.lb_tip.text = tip;
-    tipView.f_hiddenTime = hiddenTime;
-    [tipView show];
-}
-
-+ (void)showBusyTip:(NSString *)tip onView:(UIView *)view hiddenTime:(CGFloat)hiddenTime
-{
-    if (view == nil)
+    if (type == XBTipViewType_failure)
     {
-        view = [[UIApplication sharedApplication].delegate window];
+        return XBImage_tip失败;
     }
-    XBTipView *tipView = [[XBTipView alloc] initWithDisplayView:view];
-    tipView.imgV_icon.image = XBImage_tip繁忙;
-    tipView.lb_tip.text = tip;
-    tipView.f_hiddenTime = hiddenTime;
-    [tipView show];
-}
-
-+ (void)showWarnTip:(NSString *)tip onView:(UIView *)view hiddenTime:(CGFloat)hiddenTime
-{
-    if (view == nil)
+    if (type == XBTipViewType_busy)
     {
-        view = [[UIApplication sharedApplication].delegate window];
+        return XBImage_tip繁忙;
     }
-    XBTipView *tipView = [[XBTipView alloc] initWithDisplayView:view];
-    tipView.imgV_icon.image = XBImage_tip警示;
-    tipView.lb_tip.text = tip;
-    tipView.f_hiddenTime = hiddenTime;
-    [tipView show];
+    if (type == XBTipViewType_warn)
+    {
+        return XBImage_tip警示;
+    }
+    return XBImage_tip成功;
 }
 
 
-
-
-+ (void)showSuccessTip:(NSString *)tip hiddenTime:(CGFloat)hiddenTime
++ (void)showSuccessTip:(NSString *)tip hiddenBlock:(XBTipViewHiddenBlock)hiddenBlock
 {
-    [XBTipView showSuccessTip:tip onView:nil hiddenTime:hiddenTime];
+    [XBTipView showTipWithType:XBTipViewType_success tip:tip onView:nil hiddenTime:k_tipHiddenTime hiddenBlock:hiddenBlock];
 }
 
-+ (void)showFailureTip:(NSString *)tip hiddenTime:(CGFloat)hiddenTime
++ (void)showFailureTip:(NSString *)tip hiddenBlock:(XBTipViewHiddenBlock)hiddenBlock
 {
-    [XBTipView showFailureTip:tip onView:nil hiddenTime:hiddenTime];
+    [XBTipView showTipWithType:XBTipViewType_failure tip:tip onView:nil hiddenTime:k_tipHiddenTime hiddenBlock:hiddenBlock];
 }
 
-+ (void)showBusyTip:(NSString *)tip hiddenTime:(CGFloat)hiddenTime
++ (void)showBusyTip:(NSString *)tip hiddenBlock:(XBTipViewHiddenBlock)hiddenBlock
 {
-    [XBTipView showBusyTip:tip onView:nil hiddenTime:hiddenTime];
+    [XBTipView showTipWithType:XBTipViewType_busy tip:tip onView:nil hiddenTime:k_tipHiddenTime hiddenBlock:hiddenBlock];
 }
 
-+ (void)showWarnTip:(NSString *)tip hiddenTime:(CGFloat)hiddenTime
++ (void)showWarnTip:(NSString *)tip hiddenBlock:(XBTipViewHiddenBlock)hiddenBlock
 {
-    [XBTipView showWarnTip:tip onView:nil hiddenTime:hiddenTime];
+    [XBTipView showTipWithType:XBTipViewType_warn tip:tip onView:nil hiddenTime:k_tipHiddenTime hiddenBlock:hiddenBlock];
 }
-
-
-
-
-+ (void)showSuccessTip:(NSString *)tip onView:(UIView *)view
-{
-    [XBTipView showSuccessTip:tip onView:view hiddenTime:k_tipHiddenTime];
-}
-
-+ (void)showFailureTip:(NSString *)tip onView:(UIView *)view
-{
-    [XBTipView showFailureTip:tip onView:view hiddenTime:k_tipHiddenTime];
-}
-
-+ (void)showBusyTip:(NSString *)tip onView:(UIView *)view
-{
-    [XBTipView showBusyTip:tip onView:view hiddenTime:k_tipHiddenTime];
-}
-
-+ (void)showWarnTip:(NSString *)tip onView:(UIView *)view
-{
-    [XBTipView showWarnTip:tip onView:view hiddenTime:k_tipHiddenTime];
-}
-
-
 
 
 + (void)showSuccessTip:(NSString *)tip
 {
-    [XBTipView showSuccessTip:tip onView:nil];
+    [XBTipView showSuccessTip:tip hiddenBlock:nil];
 }
 
 + (void)showFailureTip:(NSString *)tip
 {
-    [XBTipView showFailureTip:tip onView:nil];
+    [XBTipView showFailureTip:tip hiddenBlock:nil];
 }
 
 + (void)showBusyTip:(NSString *)tip
 {
-    [XBTipView showBusyTip:tip onView:nil];
+    [XBTipView showBusyTip:tip hiddenBlock:nil];
 }
 
 + (void)showWarnTip:(NSString *)tip
 {
-    [XBTipView showWarnTip:tip onView:nil];
+    [XBTipView showWarnTip:tip hiddenBlock:nil];
 }
-
 
 
 
@@ -187,6 +142,15 @@
     };
     
     [self hiddenAfterSecond:k_tipHiddenTime];
+}
+
+- (void)hidden
+{
+    if (self.bl_hidden)
+    {
+        self.bl_hidden();
+    }
+    [super hidden];
 }
 
 
