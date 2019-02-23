@@ -141,7 +141,7 @@
         }];
     };
     
-    [self hiddenAfterSecond:k_tipHiddenTime];
+    [self hiddenAfterSecond:self.f_hiddenTime];
 }
 
 - (void)hidden
