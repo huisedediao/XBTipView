@@ -118,30 +118,21 @@
     self.hideWhileTouchOtherArea = NO;
     self.backgroundViewColor = [UIColor clearColor];
     
-    CGFloat selfWidth = 80;
-    NSString *title = self.lb_tip.text;
-    UIFont *font = self.lb_tip.font;
-    CGFloat tipStrWidth = getWidthWith_title_font(title, font) + 20;
-    if (tipStrWidth > selfWidth)
-    {
-        selfWidth = tipStrWidth;
-    }
-    
     self.showLayoutBlock = ^(XBAlertViewBase *alertView) {
         [alertView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(alertView.superview);
-            make.size.mas_equalTo(CGSizeMake(selfWidth, 80));
+            make.width.mas_greaterThanOrEqualTo(80);
         }];
     };
     
     self.hiddenLayoutBlock = ^(XBAlertViewBase *alertView) {
         [alertView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(alertView.superview);
-            make.size.mas_equalTo(CGSizeMake(selfWidth, 80));
+            make.width.mas_greaterThanOrEqualTo(80);
         }];
     };
     
-    [self hiddenAfterSecond:k_tipHiddenTime];
+    [self hiddenAfterSecond:self.f_hiddenTime];
 }
 
 - (void)hidden
@@ -162,7 +153,7 @@
         [self addSubview:_imgV_icon];
         [_imgV_icon mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
-            make.centerY.equalTo(self).offset(- 10);
+            make.top.equalTo(self).offset(spaceOfTextAndBorder);
             make.size.mas_equalTo(CGSizeMake(32, 32));
         }];
     }
@@ -177,10 +168,24 @@
         [_lb_tip mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
             make.top.equalTo(_imgV_icon.mas_bottom).offset(8.5);
+            make.left.greaterThanOrEqualTo(self).offset(spaceOfTextAndBorder);
+            make.right.lessThanOrEqualTo(self).offset(- spaceOfTextAndBorder);
+            make.bottom.lessThanOrEqualTo(self).offset(- spaceOfTextAndBorder);
+            make.width.mas_lessThanOrEqualTo(XBTipView_kScreenWidth - 100);
         }];
+        _lb_tip.numberOfLines = 0;
+        _lb_tip.textAlignment = NSTextAlignmentCenter;
         _lb_tip.font = UIFont(12);
         _lb_tip.textColor = [UIColor whiteColor];
     }
     return _lb_tip;
+}
+- (CGFloat)f_hiddenTime
+{
+    if (_f_hiddenTime != 0)
+    {
+        return _f_hiddenTime;
+    }
+    return k_tipHiddenTime;
 }
 @end

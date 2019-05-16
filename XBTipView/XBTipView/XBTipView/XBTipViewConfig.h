@@ -9,6 +9,8 @@
 #ifndef XBTipViewConfig_h
 #define XBTipViewConfig_h
 
+static const CGFloat spaceOfTextAndBorder = 15;
+
 //根据传入的文字和字体获取宽度 (CGFloat)
 #define getWidthWith_title_font(title,font) ({\
 UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 1000, 0)];\
@@ -26,6 +28,7 @@ label.frame.size.width;\
 #define XBImage_tip警示                                     UIImageName(@"tip-警示")
 #define XBImage_tip失败                                     UIImageName(@"tip-失败")
 
+#define XBTipView_kScreenWidth                        [UIScreen mainScreen].bounds.size.width
 
 #define k_tipHiddenTime (1)
 

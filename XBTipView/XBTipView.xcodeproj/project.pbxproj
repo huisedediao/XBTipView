@@ -38,6 +38,7 @@
 		F134C4C9209AA98A006CCC3E /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = F134C4BD209AA989006CCC3E /* MASViewConstraint.m */; };
 		F134C4CA209AA98A006CCC3E /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = F134C4BE209AA989006CCC3E /* MASViewAttribute.m */; };
 		F134C4CB209AA98A006CCC3E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F134C4BF209AA989006CCC3E /* README.md */; };
+		F1E229A9228D4F3300F70CDA /* XBToast.m in Sources */ = {isa = PBXBuildFile; fileRef = F1E229A7228D4F3300F70CDA /* XBToast.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,9 @@
 		F134C4BD209AA989006CCC3E /* MASViewConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewConstraint.m; sourceTree = "<group>"; };
 		F134C4BE209AA989006CCC3E /* MASViewAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewAttribute.m; sourceTree = "<group>"; };
 		F134C4BF209AA989006CCC3E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		F1E229A7228D4F3300F70CDA /* XBToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBToast.m; sourceTree = "<group>"; };
+		F1E229A8228D4F3300F70CDA /* XBToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBToast.h; sourceTree = "<group>"; };
+		F1E229AA228D4F6300F70CDA /* XBToastConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XBToastConfig.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +174,7 @@
 		F134C444209AA6B1006CCC3E /* XBTipView */ = {
 			isa = PBXGroup;
 			children = (
+				F1E229A6228D4F3300F70CDA /* XBToast */,
 				F134C4A3209AA989006CCC3E /* Masonry */,
 				F134C47B209AA7EF006CCC3E /* XBAlertViewBase */,
 				F134C477209AA7B0006CCC3E /* XBTipView */,
@@ -285,6 +290,16 @@
 				F134C4BE209AA989006CCC3E /* MASViewAttribute.m */,
 			);
 			path = Masonry;
+			sourceTree = "<group>";
+		};
+		F1E229A6228D4F3300F70CDA /* XBToast */ = {
+			isa = PBXGroup;
+			children = (
+				F1E229A7228D4F3300F70CDA /* XBToast.m */,
+				F1E229A8228D4F3300F70CDA /* XBToast.h */,
+				F1E229AA228D4F6300F70CDA /* XBToastConfig.h */,
+			);
+			path = XBToast;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -428,6 +443,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F134C486209AA7EF006CCC3E /* XBAlertViewBase.m in Sources */,
+				F1E229A9228D4F3300F70CDA /* XBToast.m in Sources */,
 				F134C488209AA7EF006CCC3E /* UIView+Animation.m in Sources */,
 				F134C4C6209AA98A006CCC3E /* NSArray+MASAdditions.m in Sources */,
 				F134C47A209AA7B0006CCC3E /* XBTipView.m in Sources */,
